@@ -1,0 +1,5 @@
+package = tdlib
+headers = td/telegram/td_json_client.h
+headerFilter = td/telegram/*
+linkerOpts.linux = -L/home/linuxbrew/.linuxbrew/lib -ltdjson
+compilerOpts.linux = -I/home/linuxbrew/.linuxbrew/include
