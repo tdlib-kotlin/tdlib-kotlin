@@ -1,9 +1,11 @@
 [versions]
 
-kotlin = "1.6.10"
+kotlin = "1.6.20"
+kotlinx-atomicfu = "0.17.1"
 
 [libraries]
 
-[plugins]
+build-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+build-kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu-gradle-plugin", version.ref = "kotlinx-atomicfu" }
 
-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+[plugins]
