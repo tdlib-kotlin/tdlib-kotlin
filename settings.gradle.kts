@@ -35,9 +35,9 @@ module("td-json-api-jni-macos", "td-json-api")
 module("td-json-api-jni-windows", "td-json-api")
 
 //also contains tdlib
-//include("td-json")
+include("td-json")
 //module("td-json-jni", "td-json")
-//module("td-json-jni-android", "td-json")
-//module("td-json-jni-linux", "td-json")
+module("td-json-tdlib-android", "td-json")
+module("td-json-tdlib-linux", "td-json")
 //module("td-json-jni-macos", "td-json")
 //module("td-json-jni-windows", "td-json")
