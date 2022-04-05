@@ -1,8 +1,0 @@
-package = dev.whyoleg.td.json.internal.tdlib
-headers = td/telegram/td_json_client.h
-headerFilter = td/telegram/*
-
-linkerOpts.linux = -L/home/linuxbrew/.linuxbrew/lib -ltdjson
-compilerOpts.linux = -I/home/linuxbrew/.linuxbrew/include
-linkerOpts.osx = -L/opt/homebrew/lib -ltdjson
-compilerOpts.osx = -I/opt/homebrew/include

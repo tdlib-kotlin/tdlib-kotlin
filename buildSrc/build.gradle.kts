@@ -12,4 +12,5 @@ kotlin {
 dependencies {
     implementation(buildLibs.build.kotlin)
     implementation(buildLibs.build.kotlinx.atomicfu)
+    implementation(buildLibs.build.android)
 }

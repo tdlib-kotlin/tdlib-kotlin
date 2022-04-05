@@ -2,10 +2,12 @@
 
 kotlin = "1.6.20"
 kotlinx-atomicfu = "0.17.1"
+android = "7.0.1"
 
 [libraries]
 
 build-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 build-kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu-gradle-plugin", version.ref = "kotlinx-atomicfu" }
+build-android = { module = "com.android.tools.build:gradle", version.ref = "android" }
 
 [plugins]

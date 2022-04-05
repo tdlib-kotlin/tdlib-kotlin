@@ -4,12 +4,14 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        google()
     }
 }
 
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+        google()
     }
 
     versionCatalogs {
@@ -24,45 +26,18 @@ fun module(name: String, parentPath: String) {
     project(":$name").projectDir = file("$parentPath/$name")
 }
 
-include("td-json")
-module("td-json-api", "td-json")
-module("td-json-jni-cpp", "td-json")
-module("td-json-jni-linux", "td-json")
-module("td-json-jni-macos", "td-json")
-module("td-json-jni-windows", "td-json")
+//only bindings to tdlib
+include("td-json-api")
+module("td-json-api-jni", "td-json-api")
+module("td-json-api-jni-android", "td-json-api")
+module("td-json-api-jni-linux", "td-json-api")
+module("td-json-api-jni-macos", "td-json-api")
+module("td-json-api-jni-windows", "td-json-api")
 
-//td-json-api - API for tdlib
-
-// I - should include tdlib
-
-//td-json - includes links to tdlib on all platforms
-
-//  td-json-jvm-linux-x64
-//  td-json-jvm-macos-x64
-//  td-json-jvm-macos-arm64
-//  td-json-jvm-windows-x64
-//  td-json-jvm - includes all platforms, but artifact is still small
-
-//td-json-android [I] - single AAR artifact for all architectures
-
-//td-json-wasm [I] - experimental
-//td-json-browser [I]
-//td-json-node
-
-//td-json-native
-
-//td-json-native-desktop
-//td-json-native-darwin //ios, watchos, tvos
-
-//td-json-native
-//  td-json-native-desktop
-//    td-json-native-linux
-//    td-json-native-macos
-//    td-json-native-windows
-//  td-json-native-ios [I]
-//  td-json-native-watchos [I]
-//  td-json-native-tvos [I]
-
-//td-lib[prebuilt] - prebuilt native tdlib library per platform - TODO: decide on how to provide mpp
-
-//td-api - generated API for specific tdlib version
+//also contains tdlib
+//include("td-json")
+//module("td-json-jni", "td-json")
+//module("td-json-jni-android", "td-json")
+//module("td-json-jni-linux", "td-json")
+//module("td-json-jni-macos", "td-json")
+//module("td-json-jni-windows", "td-json")

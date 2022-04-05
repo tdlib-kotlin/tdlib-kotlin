@@ -1,0 +1,3 @@
+plugins {
+    template.multiplatform.jni
+}
