@@ -24,8 +24,12 @@ fun module(name: String, parentPath: String) {
     project(":$name").projectDir = file("$parentPath/$name")
 }
 
-include("td-json-api")
 include("td-json")
+module("td-json-api", "td-json")
+module("td-json-jni-cpp", "td-json")
+module("td-json-jni-linux", "td-json")
+module("td-json-jni-macos", "td-json")
+module("td-json-jni-windows", "td-json")
 
 //td-json-api - API for tdlib
 

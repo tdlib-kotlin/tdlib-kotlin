@@ -8,7 +8,7 @@ class TdJsonTest {
         val td = TdJson()
 
         // disable TDLib logging
-        td.execute("""{"@type":"setLogVerbosityLevel", "new_verbosity_level":0}""")
+        println(td.execute("""{"@type":"setLogVerbosityLevel", "new_verbosity_level":0}"""))
 
         val clientId = td.createClientId()
         td.send(clientId, """{"@type":"getOption", "name":"version"}""")

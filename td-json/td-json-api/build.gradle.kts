@@ -1,4 +1,3 @@
-import org.gradle.internal.jvm.*
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.plugin.mpp.*
 import org.jetbrains.kotlin.gradle.targets.jvm.tasks.*
@@ -6,7 +5,6 @@ import org.jetbrains.kotlin.gradle.targets.native.tasks.*
 
 plugins {
     template.multiplatform
-    `cpp-library`
 }
 
 val os = OperatingSystem.current()!!
@@ -25,6 +23,13 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(kotlin("test"))
+            }
+        }
+        val jvmMain by getting {
+            dependencies {
+                api(projects.tdJsonJniLinux)
+                api(projects.tdJsonJniMacos)
+                api(projects.tdJsonJniWindows)
             }
         }
         val nativeMain by creating {
@@ -51,43 +56,10 @@ kotlin {
     }
 }
 
-library {
-    //TODO: set single targetMachine
-    source.from(file("jvm/main/cpp"))
-    val jvmPath = Jvm.current().javaHome.canonicalPath
-    val osJvmSuffix = when {
-        os.isLinux  -> "linux"
-        os.isMacOsX -> "darwin"
-        else        -> TODO("not supported yet")
-    }
-    val osIncludePath = when {
-        os.isLinux  -> "/home/linuxbrew/.linuxbrew/include"
-        os.isMacOsX -> "/opt/homebrew/include"
-        else        -> TODO("not supported yet")
-    }
-    binaries.configureEach {
-        this as CppSharedLibrary
-
-        linkTask.get().linkerArgs.addAll(
-            "-L$osLinkPath",
-            "-ltdjson"
-        )
-
-        compileTask.get().compilerArgs.addAll(
-            "-I$osIncludePath",
-            "-I$jvmPath/include",
-            "-I$jvmPath/include/$osJvmSuffix",
-        )
-    }
-}
-
 tasks.withType<KotlinNativeHostTest> {
     environment("LD_LIBRARY_PATH", osLinkPath)
 }
 
-
 tasks.named<KotlinJvmTest>("jvmTest") {
-    val lib = library.developmentBinary.get() as CppSharedLibrary
-    dependsOn(lib.linkTask)
-    systemProperty("java.library.path", listOf(lib.linkFile.get().asFile.parentFile.canonicalPath, osLinkPath).joinToString(":"))
+    systemProperty("java.library.path", osLinkPath)
 }

@@ -1,5 +1,6 @@
 plugins {
     org.jetbrains.kotlin.multiplatform
+    `maven-publish`
 }
 
 kotlin {
