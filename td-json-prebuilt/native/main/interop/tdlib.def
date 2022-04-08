@@ -1,0 +1,9 @@
+package = dev.whyoleg.td.json.prebuilt.internal.tdlib
+headers = td/telegram/td_json_client.h
+headerFilter = td/telegram/*
+
+linkerOpts.linux = -L/home/oleg/IdeaProjects/learn/td/built/tdlib/linux/lib -ltdjson
+compilerOpts.linux = -I/home/oleg/IdeaProjects/learn/td/built/tdlib/linux/include
+
+linkerOpts.osx = -L/opt/homebrew/lib -ltdjson
+compilerOpts.osx = -I/opt/homebrew/include

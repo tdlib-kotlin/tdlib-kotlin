@@ -26,18 +26,29 @@ fun module(name: String, parentPath: String) {
     project(":$name").projectDir = file("$parentPath/$name")
 }
 
-//only bindings to tdlib
-include("td-json-api")
-module("td-json-api-jni", "td-json-api")
-module("td-json-api-jni-android", "td-json-api")
-module("td-json-api-jni-linux", "td-json-api")
-module("td-json-api-jni-macos", "td-json-api")
-module("td-json-api-jni-windows", "td-json-api")
+include("td-json") //v
 
-//also contains tdlib
-include("td-json")
-//module("td-json-jni", "td-json")
-module("td-json-tdlib-android", "td-json")
-module("td-json-tdlib-linux", "td-json")
-//module("td-json-jni-macos", "td-json")
-//module("td-json-jni-windows", "td-json")
+include("td-json-jni") //v-td
+module("td-json-jni-jvm-native", "td-json-jni")
+module("td-json-jni-jvm-linux-x64", "td-json-jni")
+module("td-json-jni-jvm-macos-x64", "td-json-jni")
+//module("td-json-jni-jvm-macos-arm64", "td-json-jni")
+module("td-json-jni-jvm-windows-x64", "td-json-jni")
+
+include("td-json-prebuilt") //v-td
+module("td-json-prebuilt-jvm-linux-x64", "td-json-prebuilt")
+module("td-json-prebuilt-jvm-macos-x64", "td-json-prebuilt")
+//module("td-json-prebuilt-jvm-macos-arm64", "td-json-prebuilt")
+module("td-json-prebuilt-jvm-windows-x64", "td-json-prebuilt")
+
+include("td-json-dynamic") //v-td
+
+
+include("td-json-tests")
+
+
+//td-api //v
+//td-api-core //v-td
+//td-api-user //v-td
+//td-api-bot  //v-td
+//td-api-test //v-td
